@@ -62,64 +62,59 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
         />
       </button>
 
-      {/* 2. Center: Expandable Icon Nav Links */}
-      <div className="flex items-center p-2 rounded-full bg-neutral-100/90 border border-black/5 shadow-inner gap-2">
+      {/* 2. Center: Extended & Perfectly Spaced Navigation Pill */}
+      <div className="flex items-center h-[68px] px-3 rounded-[34px] bg-neutral-100/90 border border-black/5 shadow-inner gap-2 xl:gap-3">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentRoute === item.route;
-          const isHovered = hoveredRoute === item.route;
-          const isExpanded = isActive || isHovered;
 
           return (
             <motion.button
               key={item.route}
-              whileTap={{ scale: 0.96 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onMouseEnter={() => setHoveredRoute(item.route)}
               onMouseLeave={() => setHoveredRoute(null)}
               onClick={() => handleNav(item.route)}
               className={cn(
-                "flex items-center rounded-full transition-all duration-200 relative h-[56px] min-w-[56px] px-4 cursor-pointer focus:outline-none",
+                "relative flex items-center justify-center gap-2.5 h-[52px] px-5 rounded-full cursor-pointer transition-colors duration-200 focus:outline-none select-none",
                 isActive
-                  ? "bg-black text-white shadow-md gap-2.5"
-                  : "bg-transparent text-black/70 hover:bg-white hover:text-black hover:shadow-sm",
+                  ? "text-white"
+                  : "text-neutral-700 hover:text-black hover:bg-white/80",
               )}
               aria-label={item.label}
               type="button"
             >
+              {/* Active Sliding Pill Indicator */}
+              {isActive && (
+                <motion.div
+                  layoutId="activeNavPill"
+                  className="absolute inset-0 rounded-full bg-black shadow-md z-0"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+
+              {/* Icon */}
               <Icon
-                size={24}
+                size={22}
                 strokeWidth={2.2}
                 aria-hidden
                 className={cn(
-                  "shrink-0 transition-colors duration-200",
-                  isActive ? "text-white" : "text-black/80",
+                  "relative z-10 shrink-0 transition-colors duration-200",
+                  isActive ? "text-white" : "text-neutral-800",
                 )}
               />
 
-              <motion.div
-                initial={false}
-                animate={{
-                  width: isExpanded ? "auto" : "0px",
-                  opacity: isExpanded ? 1 : 0,
-                  marginLeft: isExpanded ? "8px" : "0px",
-                }}
-                transition={{
-                  width: { type: "spring", stiffness: 350, damping: 30 },
-                  opacity: { duration: 0.18 },
-                  marginLeft: { duration: 0.18 },
-                }}
-                className="overflow-hidden flex items-center"
+              {/* Label */}
+              <span
+                className={cn(
+                  "relative z-10 whitespace-nowrap text-[20px] tracking-[0.1px] transition-colors duration-200 leading-none",
+                  isActive ? "font-semibold text-white" : "font-medium text-neutral-800",
+                )}
+                style={{ fontFamily: "'Satoshi', Arial, sans-serif" }}
               >
-                <span
-                  className={cn(
-                    "whitespace-nowrap select-none text-[22px] tracking-[0.11px]",
-                    isActive ? "font-bold text-white" : "font-medium text-black",
-                  )}
-                  style={{ fontFamily: "'Satoshi', Arial, sans-serif" }}
-                >
-                  {item.label}
-                </span>
-              </motion.div>
+                {item.label}
+              </span>
             </motion.button>
           );
         })}
