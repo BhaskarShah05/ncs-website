@@ -1,0 +1,137 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,800,700,600,500,400&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-muted: #111113;
+  --color-muted-foreground: #a1a1aa;
+}
+
+@font-face {
+  font-family: "SF Pro:Regular";
+  src: url("https://static.figma.com/font/SF-Pro_1") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins:Regular";
+  src: url("https://static.figma.com/font/Poppins-Regular_6") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins:SemiBold";
+  src: url("https://static.figma.com/font/Poppins-SemiBold_6") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Inter:Bold";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter:Regular";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Playfair Display:Italic";
+  src: url("https://static.figma.com/font/PlayfairDisplay-Italic_wght__1") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+
+:root {
+  color: white;
+  background: black;
+  font-family: "Satoshi Variable:Regular", "SF Pro:Regular", Inter, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: black;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+@layer base {
+  button,
+  a {
+    font-family: inherit;
+  }
+}
+
+.design-viewport {
+  position: relative;
+  width: min(100%, 1728px);
+  margin-inline: auto;
+  overflow: hidden;
+  background: transparent;
+}
+
+.design-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1728px;
+  transform-origin: top left;
+  overflow: hidden;
+  background: transparent;
+}
+
+.gradient-title {
+  color: transparent;
+  background: radial-gradient(circle at 38% 30%, #ffffff 0%, #e4e4e4 36%, #777777 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Moving Photo Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.mask-radial {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Glow effects */
+.glow-heart {
+  filter: drop-shadow(0 0 35px rgba(255, 60, 100, 0.45)) drop-shadow(0 0 60px rgba(50, 100, 255, 0.35));
+}

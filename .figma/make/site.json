@@ -1,0 +1,10 @@
+{
+  "description": "Transforms design files into perfectly coded websites with accurately placed SVG images and flawless layouts for seamless web development.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
