@@ -30,7 +30,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative mx-auto mt-[75px] flex w-[1539px] max-w-full items-start justify-between">
         <div className="flex w-[738px] flex-col items-start pt-[33px]">
-          <h1 className="flex flex-col font-['Satoshi:Black',Arial,sans-serif] text-[132px] font-black leading-[1.14] tracking-[-3.5px] uppercase">
+          <h1 className="flex flex-col font-['Satoshi:Black',Arial,sans-serif] text-[132px] font-black leading-[1.05] tracking-[-3.5px] uppercase">
             <span
               className="bg-clip-text text-transparent"
               style={{
@@ -60,17 +60,19 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="mt-[56px] font-['Satoshi:Medium',Arial,sans-serif] text-[16px] font-medium tracking-[3.8px] text-[#b3b3b3] uppercase">
+          <p className="mt-[36px] font-['Satoshi:Medium',Arial,sans-serif] text-[16px] font-medium tracking-[3.5px] text-[#d4d4d8] uppercase">
             WE CODE • WE DESIGN • WE DEVELOP
           </p>
 
           <button
             type="button"
             onClick={() => navigate("recruitment")}
-            className="mt-[36px] flex h-[50px] w-[308px] items-center justify-center gap-3 rounded-full border border-white bg-black text-[18px] font-medium text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] cursor-pointer"
+            className="mt-[28px] flex h-[52px] w-fit items-center justify-center gap-3 rounded-full border border-white/80 bg-transparent px-8 text-[18px] font-medium text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] cursor-pointer group"
           >
             <span>Join the Community</span>
-            <span className="text-[20px] font-light">↗</span>
+            <span className="text-[20px] font-light transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              ↗
+            </span>
           </button>
         </div>
 
