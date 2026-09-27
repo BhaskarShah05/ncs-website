@@ -120,14 +120,14 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
         })}
       </div>
 
-      {/* 3. Right: Connect CTA Button */}
+      {/* 3. Right: Connect CTA (Untouched) */}
       <button
         type="button"
         onClick={handleConnect}
-        className="flex h-[93px] w-[305px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-black text-center font-bold tracking-tight text-white shadow-[0_10px_25px_-3px_rgba(0,0,0,0.32)] transition-all duration-300 hover:bg-neutral-900 hover:shadow-[0_14px_30px_-2px_rgba(0,0,0,0.4)] hover:scale-[1.02] active:scale-[0.98]"
-        style={{ fontFamily: "'Satoshi', Arial, sans-serif", fontSize: "42px", fontWeight: 700 }}
+        className="flex h-[66px] px-[38px] shrink-0 cursor-pointer items-center justify-center rounded-[33px] bg-black text-center font-normal tracking-[0.11px] text-[#fffefe] transition-all hover:bg-neutral-800"
+        style={{ fontFamily: "'Satoshi', Arial, sans-serif", fontSize: "29.1px" }}
       >
-        <span style={{ fontSize: "42px", fontFamily: "'Satoshi', Arial, sans-serif", fontWeight: 700, lineHeight: 1 }}>
+        <span style={{ fontSize: "29.1px", fontFamily: "'Satoshi', Arial, sans-serif", lineHeight: 1 }}>
           Connect
         </span>
       </button>
