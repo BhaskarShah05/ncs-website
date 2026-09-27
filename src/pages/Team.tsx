@@ -636,20 +636,12 @@ export default function Team() {
                       </p>
                     </div>
                   </div>
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:488">
-                    <div className="-translate-x-1/2 absolute h-[410px] left-[calc(50%+13.24px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[66px] w-[276px]" data-node-id="0:489">
-                      <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle64} />
-                    </div>
-                    <div className="-translate-x-1/2 absolute h-[248px] left-1/2 rounded-bl-[200px] rounded-br-[200px] top-[352px] w-[200px]" data-node-id="0:490" style={{ backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.875) 22.125%, rgba(0, 0, 0, 0.95) 65.133%, rgb(0, 0, 0) 100%)" }} />
-                    <div className="-translate-x-1/2 [word-break:break-word] absolute content-stretch flex flex-col gap-[8px] items-center justify-center left-1/2 not-italic text-center top-[427px] whitespace-nowrap" data-node-id="0:491">
-                      <div className="flex flex-col font-['Satoshi:Bold',Arial,sans-serif] justify-center leading-[0] relative shrink-0 text-[28px] text-white" data-node-id="0:492">
-                        <p className="leading-[1.25] mb-0 whitespace-pre">{`Sanskar `}</p>
-                        <p className="leading-[1.25] whitespace-pre">Pal</p>
-                      </div>
-                      <p className="font-['Satoshi:Regular',Arial,sans-serif] leading-[normal] relative shrink-0 text-[#ffd9e5] text-[16px]" data-node-id="0:493">
-                        Programmer
-                      </p>
-                    </div>
+                  <div className="col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[100px] row-1 w-[200px]" data-node-id="0:488">
+                    <img
+                      alt="Sanskar Pal - Programmer"
+                      className="block size-full max-w-none object-contain pointer-events-none select-none"
+                      src="/assets/sanskar_card.svg"
+                    />
                   </div>
                   <div className="bg-[#feb9ce] col-1 h-[600px] ml-[434px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:494">
                     <div className="-translate-x-1/2 absolute h-[486px] left-[calc(50%+45.66px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[30.88px] w-[327px]" data-node-id="0:495">
