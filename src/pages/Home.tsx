@@ -177,94 +177,99 @@ export default function Home() {
                 onMouseEnter={() => setHoveredClub(club.id)}
                 onClick={() => setHoveredClub(isHovered ? null : club.id)}
                 className={cn(
-                  "flex flex-col items-center w-full transition-all duration-300 cursor-pointer select-none",
-                  isFaded ? "opacity-30 blur-[0.5px] scale-[0.98]" : "opacity-100 scale-100",
+                  "flex items-center justify-center gap-4 sm:gap-7 md:gap-9 lg:gap-[42px] transition-all duration-300 cursor-pointer select-none",
+                  isFaded ? "opacity-35 blur-[0.5px] scale-[0.98]" : "opacity-100 scale-100",
                 )}
               >
-                {/* Main Row: Logo + Title */}
-                <div className="flex items-center justify-center gap-4 sm:gap-7 md:gap-9 lg:gap-[42px] group">
-                  {club.logoPosition === "left" && (
-                    <motion.img
-                      src={club.logo}
-                      alt={`${club.name} Club Logo`}
-                      animate={{
-                        scale: isHovered ? 1.08 : 1,
-                        rotate: isHovered ? -3 : 0,
-                      }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="h-[80px] w-[69px] sm:h-[135px] sm:w-[117px] md:h-[180px] md:w-[155px] lg:h-[229px] lg:w-[198px] object-contain shrink-0 transition-all duration-300"
-                      style={{
-                        filter: isHovered
-                          ? `drop-shadow(0 15px 35px ${club.glowColor}) drop-shadow(0 0 25px ${club.glowColor})`
-                          : `drop-shadow(0 12px 30px ${club.badgeShadow})`,
-                      }}
-                    />
-                  )}
-
-                  <span
-                    className={cn(
-                      "font-['Satoshi:Black',Arial,sans-serif] text-[40px] sm:text-[72px] md:text-[100px] lg:text-[125px] xl:text-[140px] font-black uppercase tracking-tight leading-none transition-all duration-300",
-                      isHovered ? "text-white drop-shadow-[0_0_35px_rgba(255,255,255,0.4)]" : "text-white",
-                    )}
+                {/* 1. Left Logo (for Development and Technical) */}
+                {club.logoPosition === "left" && (
+                  <div
+                    className="relative shrink-0 flex items-center justify-center"
+                    style={{ perspective: 1200 }}
                   >
-                    {club.name}
-                  </span>
-
-                  {club.logoPosition === "right" && (
-                    <motion.img
-                      src={club.logo}
-                      alt={`${club.name} Club Logo`}
-                      animate={{
-                        scale: isHovered ? 1.08 : 1,
-                        rotate: isHovered ? 3 : 0,
-                      }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="h-[80px] w-[69px] sm:h-[135px] sm:w-[117px] md:h-[180px] md:w-[155px] lg:h-[229px] lg:w-[198px] object-contain shrink-0 transition-all duration-300"
-                      style={{
-                        filter: isHovered
-                          ? `drop-shadow(0 15px 35px ${club.glowColor}) drop-shadow(0 0 25px ${club.glowColor})`
-                          : `drop-shadow(0 12px 30px ${club.badgeShadow})`,
-                      }}
-                    />
-                  )}
-                </div>
-
-                {/* Animated Description Card */}
-                <AnimatePresence>
-                  {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0, y: -16, scale: 0.96 }}
-                      animate={{ opacity: 1, height: "auto", y: 0, scale: 1 }}
-                      exit={{ opacity: 0, height: 0, y: -12, scale: 0.96 }}
-                      transition={{
-                        height: { type: "spring", stiffness: 320, damping: 28 },
-                        opacity: { duration: 0.22 },
-                        scale: { duration: 0.22 },
+                      className="relative w-[110px] h-[125px] sm:w-[155px] sm:h-[180px] md:w-[185px] md:h-[215px] lg:w-[220px] lg:h-[250px]"
+                      animate={{
+                        rotateY: isHovered ? 180 : 0,
+                        scale: isHovered ? 1.06 : 1,
                       }}
-                      className="overflow-hidden w-full max-w-[960px] px-4 pt-6 sm:pt-8"
+                      transition={{
+                        duration: 0.6,
+                        ease: [0.23, 1, 0.32, 1],
+                      }}
+                      style={{ transformStyle: "preserve-3d" }}
                     >
+                      {/* Front: Logo */}
                       <div
-                        className="relative rounded-[28px] border bg-[#0a0a0c]/90 backdrop-blur-2xl p-6 sm:p-8 shadow-2xl overflow-hidden transition-all duration-300"
+                        className="absolute inset-0 flex items-center justify-center"
                         style={{
-                          borderColor: `${club.color}45`,
-                          boxShadow: `0 16px 50px -10px ${club.glowColor}, inset 0 1px 0 0 rgba(255,255,255,0.1)`,
+                          backfaceVisibility: "hidden",
+                          WebkitBackfaceVisibility: "hidden",
                         }}
                       >
-                        {/* Glow accent pill at top */}
-                        <div
-                          className="absolute top-0 left-1/2 -translate-x-1/2 h-[2px] w-48 rounded-full"
+                        <img
+                          src={club.logo}
+                          alt={`${club.name} Club Logo`}
+                          className="size-full object-contain"
                           style={{
-                            backgroundColor: club.color,
-                            boxShadow: `0 0 16px 2px ${club.color}`,
+                            filter: isHovered
+                              ? `drop-shadow(0 15px 35px ${club.glowColor}) drop-shadow(0 0 25px ${club.glowColor})`
+                              : `drop-shadow(0 12px 30px ${club.badgeShadow})`,
+                          }}
+                        />
+                      </div>
+
+                      {/* Back: Description Card */}
+                      <div
+                        className="absolute inset-0 flex flex-col justify-between rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] p-3.5 sm:p-4.5 lg:p-5 border bg-[#0a0a0d]/95 backdrop-blur-2xl text-left select-none overflow-hidden"
+                        style={{
+                          backfaceVisibility: "hidden",
+                          WebkitBackfaceVisibility: "hidden",
+                          transform: "rotateY(180deg)",
+                          borderColor: `${club.color}60`,
+                          boxShadow: `0 20px 45px -10px ${club.glowColor}, inset 0 1px 0 rgba(255,255,255,0.15)`,
+                        }}
+                      >
+                        {/* Top Neon Accent Line */}
+                        <div
+                          className="absolute top-0 left-0 right-0 h-[2.5px]"
+                          style={{
+                            background: `linear-gradient(90deg, transparent, ${club.color}, transparent)`,
+                            boxShadow: `0 0 12px ${club.color}`,
                           }}
                         />
 
+                        {/* Card Header */}
+                        <div className="flex items-center justify-between">
+                          <span
+                            className="text-[10px] sm:text-[11px] lg:text-[13px] font-black tracking-wider uppercase"
+                            style={{ color: club.color, fontFamily: "'Satoshi', Arial, sans-serif" }}
+                          >
+                            {club.name}
+                          </span>
+                          <span
+                            className="size-2 sm:size-2.5 rounded-full shrink-0"
+                            style={{
+                              backgroundColor: club.color,
+                              boxShadow: `0 0 10px ${club.color}`,
+                            }}
+                          />
+                        </div>
+
+                        {/* Description */}
+                        <p
+                          className="text-[11px] sm:text-[12px] md:text-[13px] lg:text-[13.5px] font-normal leading-[1.45] text-neutral-200 line-clamp-4 my-auto"
+                          style={{ fontFamily: "'Satoshi', Arial, sans-serif" }}
+                        >
+                          {club.description}
+                        </p>
+
                         {/* Domain Tags */}
-                        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-4">
-                          {club.tags.map((tag) => (
+                        <div className="flex flex-wrap gap-1 sm:gap-1.5 pt-1">
+                          {club.tags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="px-3.5 py-1 rounded-full text-xs sm:text-sm font-semibold tracking-wide border transition-all"
+                              className="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] lg:text-[10.5px] font-medium border tracking-wide whitespace-nowrap"
                               style={{
                                 backgroundColor: `${club.color}15`,
                                 borderColor: `${club.color}35`,
@@ -275,18 +280,124 @@ export default function Home() {
                             </span>
                           ))}
                         </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
 
-                        {/* Description Text */}
+                {/* 2. Club Title */}
+                <span
+                  className={cn(
+                    "font-['Satoshi:Black',Arial,sans-serif] text-[40px] sm:text-[72px] md:text-[100px] lg:text-[125px] xl:text-[140px] font-black uppercase tracking-tight leading-none transition-all duration-300",
+                    isHovered ? "text-white drop-shadow-[0_0_35px_rgba(255,255,255,0.4)]" : "text-white",
+                  )}
+                >
+                  {club.name}
+                </span>
+
+                {/* 3. Right Logo (for Programming and Designing) */}
+                {club.logoPosition === "right" && (
+                  <div
+                    className="relative shrink-0 flex items-center justify-center"
+                    style={{ perspective: 1200 }}
+                  >
+                    <motion.div
+                      className="relative w-[110px] h-[125px] sm:w-[155px] sm:h-[180px] md:w-[185px] md:h-[215px] lg:w-[220px] lg:h-[250px]"
+                      animate={{
+                        rotateY: isHovered ? 180 : 0,
+                        scale: isHovered ? 1.06 : 1,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: [0.23, 1, 0.32, 1],
+                      }}
+                      style={{ transformStyle: "preserve-3d" }}
+                    >
+                      {/* Front: Logo */}
+                      <div
+                        className="absolute inset-0 flex items-center justify-center"
+                        style={{
+                          backfaceVisibility: "hidden",
+                          WebkitBackfaceVisibility: "hidden",
+                        }}
+                      >
+                        <img
+                          src={club.logo}
+                          alt={`${club.name} Club Logo`}
+                          className="size-full object-contain"
+                          style={{
+                            filter: isHovered
+                              ? `drop-shadow(0 15px 35px ${club.glowColor}) drop-shadow(0 0 25px ${club.glowColor})`
+                              : `drop-shadow(0 12px 30px ${club.badgeShadow})`,
+                          }}
+                        />
+                      </div>
+
+                      {/* Back: Description Card */}
+                      <div
+                        className="absolute inset-0 flex flex-col justify-between rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] p-3.5 sm:p-4.5 lg:p-5 border bg-[#0a0a0d]/95 backdrop-blur-2xl text-left select-none overflow-hidden"
+                        style={{
+                          backfaceVisibility: "hidden",
+                          WebkitBackfaceVisibility: "hidden",
+                          transform: "rotateY(180deg)",
+                          borderColor: `${club.color}60`,
+                          boxShadow: `0 20px 45px -10px ${club.glowColor}, inset 0 1px 0 rgba(255,255,255,0.15)`,
+                        }}
+                      >
+                        {/* Top Neon Accent Line */}
+                        <div
+                          className="absolute top-0 left-0 right-0 h-[2.5px]"
+                          style={{
+                            background: `linear-gradient(90deg, transparent, ${club.color}, transparent)`,
+                            boxShadow: `0 0 12px ${club.color}`,
+                          }}
+                        />
+
+                        {/* Card Header */}
+                        <div className="flex items-center justify-between">
+                          <span
+                            className="text-[10px] sm:text-[11px] lg:text-[13px] font-black tracking-wider uppercase"
+                            style={{ color: club.color, fontFamily: "'Satoshi', Arial, sans-serif" }}
+                          >
+                            {club.name}
+                          </span>
+                          <span
+                            className="size-2 sm:size-2.5 rounded-full shrink-0"
+                            style={{
+                              backgroundColor: club.color,
+                              boxShadow: `0 0 10px ${club.color}`,
+                            }}
+                          />
+                        </div>
+
+                        {/* Description */}
                         <p
-                          className="text-[17px] sm:text-[20px] md:text-[22px] font-normal leading-[1.55] text-neutral-200 text-center max-w-[820px] mx-auto tracking-normal"
+                          className="text-[11px] sm:text-[12px] md:text-[13px] lg:text-[13.5px] font-normal leading-[1.45] text-neutral-200 line-clamp-4 my-auto"
                           style={{ fontFamily: "'Satoshi', Arial, sans-serif" }}
                         >
                           {club.description}
                         </p>
+
+                        {/* Domain Tags */}
+                        <div className="flex flex-wrap gap-1 sm:gap-1.5 pt-1">
+                          {club.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] lg:text-[10.5px] font-medium border tracking-wide whitespace-nowrap"
+                              style={{
+                                backgroundColor: `${club.color}15`,
+                                borderColor: `${club.color}35`,
+                                color: club.color,
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </motion.div>
-                  )}
-                </AnimatePresence>
+                  </div>
+                )}
               </div>
             );
           })}
