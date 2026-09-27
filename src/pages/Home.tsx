@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WorksWheel, { defaultHighlightItems } from "../components/WorksWheel";
 import SocialCards, { CardItem } from "../components/ui/card-fan-carousel";
+import { LiquidMetalButton } from "../components/ui/liquid-metal-button";
 
 const EVENT_CARDS: CardItem[] = [
   { imgUrl: "/assets/events/event-1.jpg", alt: "NCS Event 1" },
@@ -197,16 +198,17 @@ export default function Home() {
             WE CODE • WE DESIGN • WE DEVELOP
           </p>
 
-          <button
-            type="button"
-            onClick={() => navigate("recruitment")}
-            className="mt-[28px] flex h-[52px] w-fit items-center justify-center gap-3 rounded-full border border-white/80 bg-transparent px-8 text-[18px] font-medium text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] cursor-pointer group"
-          >
-            <span>Join the Community</span>
-            <span className="text-[20px] font-light transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-              ↗
-            </span>
-          </button>
+          <div className="mt-[32px]">
+            <LiquidMetalButton
+              label="Join the Community"
+              onClick={() => navigate("recruitment")}
+              width={260}
+              height={56}
+              fontSize={18}
+              fontWeight={600}
+              icon={<span className="text-[20px] font-light leading-none">↗</span>}
+            />
+          </div>
         </div>
 
         <div className="relative flex w-[816px] shrink-0 items-center justify-end">

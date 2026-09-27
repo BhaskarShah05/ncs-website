@@ -18,6 +18,7 @@ const imgVector10 = `${assetPathPrefix}/ac2ff.svg`;
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { LiquidMetalButton } from "../components/ui/liquid-metal-button";
 
 function BasilNotificationOnOutline({ className }: { className?: string }) {
   return (
@@ -83,13 +84,16 @@ export default function Recruitment() {
                   </div>
                 </div>
               </div>
-              <div className="h-[50px] overflow-clip relative rounded-[33px] shrink-0 w-[168px]" data-node-id="0:1362" style={{ backgroundImage: "linear-gradient(67.89113436081719deg, rgb(107, 93, 252) 16.537%, rgb(255, 226, 244) 46.098%, rgb(95, 125, 255) 88.164%)" }}>
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex gap-[4.5px] items-end left-[calc(50%+0.2px)] top-[calc(50%+0.25px)]" data-node-id="0:1363">
-                  <BasilNotificationOnOutline className="relative shrink-0 size-[21.6px]" />
-                  <div className="[word-break:break-word] flex flex-col font-['Satoshi_Variable:Medium',Arial,sans-serif] h-[22.5px] justify-center leading-[0] not-italic relative shrink-0 text-[21.6px] text-black text-center tracking-[0.0844px] w-[96.3px]" data-node-id="0:1365">
-                    <p className="leading-[10.8px]">Notify me</p>
-                  </div>
-                </div>
+              <div className="mt-2">
+                <LiquidMetalButton
+                  label="Notify me"
+                  onClick={() => alert("Thank you! You'll be notified as soon as recruitments open.")}
+                  width={185}
+                  height={52}
+                  fontSize={18}
+                  fontWeight={600}
+                  icon={<BasilNotificationOnOutline className="relative shrink-0 size-[20px] filter brightness-0 invert" />}
+                />
               </div>
             </div>
           </div>

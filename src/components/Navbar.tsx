@@ -10,6 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LiquidMetalButton } from "./ui/liquid-metal-button";
 
 interface NavbarProps {
   currentRoute?: string;
@@ -120,17 +121,15 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
         })}
       </div>
 
-      {/* 3. Right: Connect CTA (Untouched) */}
-      <button
-        type="button"
+      {/* 3. Right: Connect CTA Liquid Metal Button */}
+      <LiquidMetalButton
+        label="Connect"
         onClick={handleConnect}
-        className="flex h-[66px] px-[38px] shrink-0 cursor-pointer items-center justify-center rounded-[33px] bg-black text-center font-normal tracking-[0.11px] text-[#fffefe] transition-all hover:bg-neutral-800"
-        style={{ fontFamily: "'Satoshi', Arial, sans-serif", fontSize: "29.1px" }}
-      >
-        <span style={{ fontSize: "29.1px", fontFamily: "'Satoshi', Arial, sans-serif", lineHeight: 1 }}>
-          Connect
-        </span>
-      </button>
+        width={180}
+        height={66}
+        fontSize={22}
+        fontWeight={700}
+      />
     </nav>
   );
 }
