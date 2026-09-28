@@ -426,7 +426,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[216.79px] mt-[160px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276320-1.svg" dataNodeId="0:380">
+                  <TeamCardFlip className="ml-[216.79px] mt-[160px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276327.svg" dataNodeId="0:380">
                     <div className="-translate-x-1/2 absolute h-[1018.416px] left-[calc(50%+18.17px)] shadow-[10.161px_10.161px_10.161px_0px_rgba(0,0,0,0.25)] top-[-197px] w-[631.289px]" data-node-id="0:381">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle49} />
                     </div>
