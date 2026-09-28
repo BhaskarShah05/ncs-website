@@ -157,7 +157,7 @@ export default function Team() {
               </p>
               <div className="content-stretch flex flex-col gap-[17px] items-center leading-[0] relative shrink-0 w-[1285px]" data-node-id="0:264">
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:265">
-                  <TeamCardFlip className="ml-[1085px] mt-[192px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276307.svg" dataNodeId="0:266">
+                  <TeamCardFlip className="ml-[1085px] mt-[192px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314.svg" dataNodeId="0:266">
                     <div className="-translate-x-1/2 absolute h-[494px] left-1/2 shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[106px] w-[332px]" data-node-id="0:267">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle31} />
                     </div>
@@ -188,7 +188,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[868px] mt-0" bgColor="bg-[#ffc931]" backSvg="Frame 1171276307-1.svg" dataNodeId="0:278">
+                  <TeamCardFlip className="ml-[868px] mt-0" bgColor="bg-[#ffc931]" backSvg="Frame 1171276307.svg" dataNodeId="0:278">
                     <div className="-translate-x-1/2 absolute h-[494px] left-[calc(50%-31px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[53px] w-[332px]" data-node-id="0:279">
                       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRectangle33} />
                     </div>
@@ -218,7 +218,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276320-2.svg" dataNodeId="0:290">
+                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276309.svg" dataNodeId="0:290">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+12px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-0 w-[394px]" data-node-id="0:291">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle35} />
                     </div>
@@ -312,7 +312,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[217px] mt-[189px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276309.svg" dataNodeId="0:328">
+                  <TeamCardFlip className="ml-[217px] mt-[189px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276320.svg" dataNodeId="0:328">
                     <div className="-translate-x-1/2 absolute h-[433px] left-[calc(50%+33px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[90px] w-[268px]" data-node-id="0:329">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle41} />
                     </div>
@@ -334,7 +334,7 @@ export default function Team() {
               </p>
               <div className="content-stretch flex flex-col gap-[17px] items-center leading-[0] relative shrink-0 w-[1285px]" data-node-id="0:335">
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:336">
-                  <TeamCardFlip className="ml-[217px] mt-[177px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276330.svg" dataNodeId="0:337">
+                  <TeamCardFlip className="ml-[217px] mt-[177px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312-1.svg" dataNodeId="0:337">
                     <div className="-translate-x-1/2 absolute h-[380.7px] left-[calc(50%-17.08px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[110px] w-[255.83px]" data-node-id="0:338">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle42} />
                     </div>
@@ -349,7 +349,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[434px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276315-1.svg" dataNodeId="0:343">
+                  <TeamCardFlip className="ml-[434px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276316.svg" dataNodeId="0:343">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%-40px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[95px] w-[394px]" data-node-id="0:344">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle43} />
                     </div>
@@ -394,7 +394,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314.svg" dataNodeId="0:361">
+                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#ffc931]" backSvg="Frame 1171276307-1.svg" dataNodeId="0:361">
                     <div className="-translate-x-1/2 absolute h-[436px] left-[calc(50%-0.5px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[61px] w-[293px]" data-node-id="0:362">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle46} />
                     </div>
@@ -411,7 +411,7 @@ export default function Team() {
                   </TeamCardFlip>
                 </div>
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:367">
-                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276320-1.svg" dataNodeId="0:368">
+                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276317-1.svg" dataNodeId="0:368">
                     <div className="-translate-x-1/2 absolute h-[548px] left-[calc(50%+13px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[13px] w-[368px]" data-node-id="0:369">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle47} />
                     </div>
@@ -441,7 +441,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[650.89px] mt-[160px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276307-2.svg" dataNodeId="0:380">
+                  <TeamCardFlip className="ml-[650.89px] mt-[160px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276320-1.svg" dataNodeId="0:380">
                     <div className="-translate-x-1/2 absolute h-[1018.416px] left-[calc(50%+18.17px)] shadow-[10.161px_10.161px_10.161px_0px_rgba(0,0,0,0.25)] top-[-197px] w-[631.289px]" data-node-id="0:381">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle49} />
                     </div>
@@ -489,7 +489,7 @@ export default function Team() {
                   </TeamCardFlip>
                 </div>
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:410">
-                  <TeamCardFlip className="ml-[217px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276316.svg" dataNodeId="0:411">
+                  <TeamCardFlip className="ml-[217px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320-2.svg" dataNodeId="0:411">
                     <div className="-translate-x-1/2 absolute h-[600px] left-1/2 shadow-[10.161px_10.161px_10.161px_0px_rgba(0,0,0,0.25)] top-0 w-[372px]" data-node-id="0:412">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle52} />
                     </div>
@@ -504,7 +504,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[434px] mt-[177px]" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276317-1.svg" dataNodeId="0:417">
+                  <TeamCardFlip className="ml-[434px] mt-[177px]" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276314-2.svg" dataNodeId="0:417">
                     <div className="-translate-x-1/2 absolute h-[573px] left-[calc(50%-3px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[27px] w-[332px]" data-node-id="0:418">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle53} />
                     </div>
@@ -519,7 +519,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-0 mt-[179px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276314-2.svg" dataNodeId="0:423">
+                  <TeamCardFlip className="ml-0 mt-[179px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276307-2.svg" dataNodeId="0:423">
                     <div className="-translate-x-1/2 absolute h-[472px] left-[calc(50%-0.5px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[25px] w-[305px]" data-node-id="0:424">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle54} />
                     </div>
@@ -541,7 +541,7 @@ export default function Team() {
               </p>
               <div className="content-stretch flex flex-col gap-[17px] items-center leading-[0] relative shrink-0 w-[1286px]" data-node-id="0:430">
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:431">
-                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#ffc931]" backSvg="Frame 1171276320.svg" dataNodeId="0:432">
+                  <TeamCardFlip className="ml-0 mt-0" bgColor="bg-[#ffc931]" backSvg="Frame 1171276330.svg" dataNodeId="0:432">
                     <div className="-translate-x-1/2 absolute h-[394px] left-[calc(50%-17.91px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[82.26px] w-[253px]" data-node-id="0:433">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle55} />
                     </div>
@@ -679,7 +679,7 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[217px] mt-[177px]" bgColor="bg-transparent" backSvg="Frame 1171276312-1.svg" dataNodeId="0:488">
+                  <TeamCardFlip className="ml-[217px] mt-[177px]" bgColor="bg-transparent" backSvg="Frame 1171276315-1.svg" dataNodeId="0:488">
                     <img
                       alt="Sanskar Pal - Programmer"
                       className="block size-full max-w-none object-contain pointer-events-none select-none"
