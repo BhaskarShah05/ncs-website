@@ -426,6 +426,21 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
+                  <TeamCardFlip className="ml-[216.79px] mt-[160px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276320-1.svg" dataNodeId="0:380">
+                    <div className="-translate-x-1/2 absolute h-[1018.416px] left-[calc(50%+18.17px)] shadow-[10.161px_10.161px_10.161px_0px_rgba(0,0,0,0.25)] top-[-197px] w-[631.289px]" data-node-id="0:381">
+                      <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle49} />
+                    </div>
+                    <div className="-translate-x-1/2 absolute h-[248px] left-1/2 rounded-bl-[200px] rounded-br-[200px] top-[352px] w-[200px]" data-node-id="0:382" style={{ backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.875) 22.125%, rgba(0, 0, 0, 0.95) 65.133%, rgb(0, 0, 0) 100%)" }} />
+                    <div className="-translate-x-1/2 [word-break:break-word] absolute content-stretch flex flex-col gap-[8px] items-center justify-center left-1/2 not-italic text-center top-[427px] whitespace-nowrap" data-node-id="0:383">
+                      <div className="flex flex-col font-['Poppins:SemiBold'] justify-center leading-[0] relative shrink-0 text-[28px] text-white" data-node-id="0:384">
+                        <p className="leading-[1.25] mb-0">Shreyansh</p>
+                        <p className="leading-[1.25]">Shrivastava</p>
+                      </div>
+                      <p className="font-['Poppins:Regular'] leading-[normal] relative shrink-0 text-[#ffd9e5] text-[16px]" data-node-id="0:385">
+                        Programmer
+                      </p>
+                    </div>
+                  </TeamCardFlip>
                   <TeamCardFlip className="ml-[433.89px] mt-0" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276318-1.svg" dataNodeId="0:374">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+12px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-0 w-[394px]" data-node-id="0:375">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle48} />
@@ -441,18 +456,18 @@ export default function Team() {
                       </p>
                     </div>
                   </TeamCardFlip>
-                  <TeamCardFlip className="ml-[650.89px] mt-[160px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276320-1.svg" dataNodeId="0:380">
-                    <div className="-translate-x-1/2 absolute h-[1018.416px] left-[calc(50%+18.17px)] shadow-[10.161px_10.161px_10.161px_0px_rgba(0,0,0,0.25)] top-[-197px] w-[631.289px]" data-node-id="0:381">
-                      <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle49} />
+                  <TeamCardFlip className="ml-[650.89px] mt-[160px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276319-1.svg" dataNodeId="0:398">
+                    <div className="-translate-x-1/2 absolute h-[618px] left-[calc(50%+46.16px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-18.12px] w-[416px]" data-node-id="0:399">
+                      <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle50} />
                     </div>
-                    <div className="-translate-x-1/2 absolute h-[248px] left-1/2 rounded-bl-[200px] rounded-br-[200px] top-[352px] w-[200px]" data-node-id="0:382" style={{ backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.875) 22.125%, rgba(0, 0, 0, 0.95) 65.133%, rgb(0, 0, 0) 100%)" }} />
-                    <div className="-translate-x-1/2 [word-break:break-word] absolute content-stretch flex flex-col gap-[8px] items-center justify-center left-1/2 not-italic text-center top-[427px] whitespace-nowrap" data-node-id="0:383">
-                      <div className="flex flex-col font-['Poppins:SemiBold'] justify-center leading-[0] relative shrink-0 text-[28px] text-white" data-node-id="0:384">
-                        <p className="leading-[1.25] mb-0">Shreyansh</p>
-                        <p className="leading-[1.25]">Shrivastava</p>
+                    <div className="-translate-x-1/2 absolute h-[248px] left-1/2 rounded-bl-[200px] rounded-br-[200px] top-[352px] w-[200px]" data-node-id="0:400" style={{ backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.875) 22.125%, rgba(0, 0, 0, 0.95) 65.133%, rgb(0, 0, 0) 100%)" }} />
+                    <div className="-translate-x-1/2 [word-break:break-word] absolute content-stretch flex flex-col gap-[8px] items-center justify-center left-1/2 not-italic text-center top-[427px] whitespace-nowrap" data-node-id="0:401">
+                      <div className="flex flex-col font-['Poppins:SemiBold'] justify-center leading-[0] relative shrink-0 text-[28px] text-white" data-node-id="0:402">
+                        <p className="leading-[1.25] mb-0">Lakshya</p>
+                        <p className="leading-[1.25]">Dubey</p>
                       </div>
-                      <p className="font-['Poppins:Regular'] leading-[normal] relative shrink-0 text-[#ffd9e5] text-[16px]" data-node-id="0:385">
-                        Programmer
+                      <p className="font-['Poppins:Regular'] leading-[normal] relative shrink-0 text-[#ffd9e5] text-[16px]" data-node-id="0:403">
+                        Developer
                       </p>
                     </div>
                   </TeamCardFlip>
@@ -468,21 +483,6 @@ export default function Team() {
                         <p className="leading-[1.25]">Dwivedi</p>
                       </div>
                       <p className="font-['Satoshi:Regular',Arial,sans-serif] leading-[normal] relative shrink-0 text-[#ffd9e5] text-[16px]" data-node-id="0:397">
-                        Developer
-                      </p>
-                    </div>
-                  </TeamCardFlip>
-                  <TeamCardFlip className="ml-[216.79px] mt-[160px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276319-1.svg" dataNodeId="0:398">
-                    <div className="-translate-x-1/2 absolute h-[618px] left-[calc(50%+46.16px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-18.12px] w-[416px]" data-node-id="0:399">
-                      <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle50} />
-                    </div>
-                    <div className="-translate-x-1/2 absolute h-[248px] left-1/2 rounded-bl-[200px] rounded-br-[200px] top-[352px] w-[200px]" data-node-id="0:400" style={{ backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.875) 22.125%, rgba(0, 0, 0, 0.95) 65.133%, rgb(0, 0, 0) 100%)" }} />
-                    <div className="-translate-x-1/2 [word-break:break-word] absolute content-stretch flex flex-col gap-[8px] items-center justify-center left-1/2 not-italic text-center top-[427px] whitespace-nowrap" data-node-id="0:401">
-                      <div className="flex flex-col font-['Poppins:SemiBold'] justify-center leading-[0] relative shrink-0 text-[28px] text-white" data-node-id="0:402">
-                        <p className="leading-[1.25] mb-0">Lakshya</p>
-                        <p className="leading-[1.25]">Dubey</p>
-                      </div>
-                      <p className="font-['Poppins:Regular'] leading-[normal] relative shrink-0 text-[#ffd9e5] text-[16px]" data-node-id="0:403">
                         Developer
                       </p>
                     </div>
