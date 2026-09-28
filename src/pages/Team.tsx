@@ -81,6 +81,10 @@ function TeamCardFlip({
       style={{ perspective: 1000, zIndex: isHovered ? 50 : 1, ...style }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={(e) => {
+        // Toggle on click/tap for touch screens
+        setIsHovered((prev) => !prev);
+      }}
       data-node-id={dataNodeId}
     >
       <motion.div

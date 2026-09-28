@@ -63,6 +63,8 @@
 html {
   scroll-behavior: smooth;
   background: black;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -71,6 +73,9 @@ body {
   background: black;
   color: white;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 @layer base {
@@ -82,10 +87,12 @@ body {
 
 .design-viewport {
   position: relative;
-  width: min(100%, 1728px);
+  width: 100%;
+  max-width: 1728px;
   margin-inline: auto;
   overflow: hidden;
   background: transparent;
+  touch-action: pan-y pinch-zoom;
 }
 
 .design-canvas {
@@ -94,8 +101,9 @@ body {
   left: 0;
   width: 1728px;
   transform-origin: top left;
-  overflow: hidden;
+  overflow: visible;
   background: transparent;
+  will-change: transform;
 }
 
 .gradient-title {
