@@ -55,6 +55,10 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import teamSvgSocialsData from "../data/teamSvgSocials.json";
+import { TeamCardSocials, SocialLink } from "../components/TeamCardSocials";
+
+const teamSvgSocials: Record<string, { name: string; links: SocialLink[] }> = teamSvgSocialsData as any;
 
 interface TeamCardFlipProps {
   className?: string;
@@ -62,6 +66,7 @@ interface TeamCardFlipProps {
   backSvg: string;
   bgColor?: string;
   dataNodeId?: string;
+  socials?: SocialLink[];
   children: React.ReactNode;
 }
 
@@ -71,9 +76,12 @@ function TeamCardFlip({
   backSvg,
   bgColor = "bg-[#ffc931]",
   dataNodeId,
+  socials,
   children,
 }: TeamCardFlipProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const memberData = teamSvgSocials[backSvg];
+  const links = socials || memberData?.links || [];
 
   return (
     <div
@@ -81,7 +89,7 @@ function TeamCardFlip({
       style={{ perspective: 1000, zIndex: isHovered ? 50 : 1, ...style }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={(e) => {
+      onClick={() => {
         // Toggle on click/tap for touch screens
         setIsHovered((prev) => !prev);
       }}
@@ -124,6 +132,12 @@ function TeamCardFlip({
             alt="Team Member Card Back"
             className="size-full object-cover pointer-events-none select-none"
             loading="lazy"
+          />
+
+          {/* Interactive Social Links Bar (covers static SVG dummy icons) */}
+          <TeamCardSocials
+            links={links}
+            memberName={memberData?.name}
           />
         </div>
       </motion.div>
