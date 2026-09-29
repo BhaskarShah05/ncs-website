@@ -1,3 +1,81 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+interface AlumniCardFlipProps {
+  className?: string;
+  style?: React.CSSProperties;
+  backSvg: string;
+  bgColor?: string;
+  dataNodeId?: string;
+  children: React.ReactNode;
+}
+
+function AlumniCardFlip({
+  className = "",
+  style = {},
+  backSvg,
+  bgColor = "bg-[#feb9ce]",
+  dataNodeId,
+  children,
+}: AlumniCardFlipProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className={`h-[600px] w-[200px] relative select-none cursor-pointer group ${className}`}
+      style={{ perspective: 1000, zIndex: isHovered ? 50 : 1, ...style }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => {
+        // Toggle on click/tap for touch screens
+        setIsHovered((prev) => !prev);
+      }}
+      data-node-id={dataNodeId}
+    >
+      <motion.div
+        className="relative size-full rounded-[100px]"
+        animate={{
+          rotateY: isHovered ? 180 : 0,
+          scale: isHovered ? 1.05 : 1,
+        }}
+        transition={{
+          duration: 0.65,
+          ease: [0.25, 1, 0.5, 1],
+        }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Front Face */}
+        <div
+          className={`absolute inset-0 size-full overflow-clip rounded-[100px] shadow-[0_8px_24px_rgba(0,0,0,0.3)] ${bgColor}`}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+        >
+          {children}
+        </div>
+
+        {/* Back Face (from ALUMNI) */}
+        <div
+          className="absolute inset-0 size-full overflow-clip rounded-[100px] shadow-[0_16px_36px_rgba(0,0,0,0.5)]"
+          style={{
+            transform: "rotateY(180deg)",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+        >
+          <img
+            src={`/assets/alumni_back/${backSvg}`}
+            alt="Alumni Card Back"
+            className="size-full object-cover pointer-events-none select-none"
+            loading="lazy"
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 const assetPathPrefix = "/assets";
 const imgRectangle31 = `${assetPathPrefix}/c7048.png`;
 const imgRectangle32 = `${assetPathPrefix}/86c98.png`;
@@ -110,7 +188,7 @@ export default function Alumni() {
               </p>
               <div className="content-stretch flex flex-col gap-[17px] items-center leading-[0] relative shrink-0" data-node-id="0:797">
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:798">
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:799">
+                  <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312.svg" dataNodeId="0:799">
                     <div className="-translate-x-1/2 absolute h-[380.7px] left-[calc(50%+7.92px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[37px] w-[255.83px]" data-node-id="0:800">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle31} />
                     </div>
@@ -121,8 +199,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Naseem</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434.88px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:804">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[434.88px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276315.svg" dataNodeId="0:804">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%-8.88px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[14px] w-[394px]" data-node-id="0:805">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle32} />
                     </div>
@@ -133,9 +211,9 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Mishra</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                   <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[217.44px] mt-[177.12px] place-items-start relative row-1" data-node-id="0:809">
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:810">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Group 1000002950.svg" dataNodeId="0:810">
                       <div className="-translate-x-1/2 absolute h-[455px] left-[calc(50%-37.94px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[123.88px] w-[305px]" data-node-id="0:811">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle33} />
                       </div>
@@ -146,9 +224,9 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Bajpai</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
-                  <div className="bg-[#ffc931] col-1 h-[600px] ml-[652.32px] mt-[177.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:815">
+                  <AlumniCardFlip className="col-1 row-1 ml-[652.32px] mt-[177.12px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276321.svg" dataNodeId="0:815">
                     <div className="-translate-x-1/2 absolute h-[507px] left-[calc(50%+19.18px)] shadow-[2.88px_2.88px_2.88px_0px_rgba(0,0,0,0.25)] top-[45.88px] w-[341px]" data-node-id="0:816">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle34} />
                     </div>
@@ -159,8 +237,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Singh</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-[869.76px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:820">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[869.76px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276309.svg" dataNodeId="0:820">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+12px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-0 w-[394px]" data-node-id="0:821">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle35} />
                     </div>
@@ -171,8 +249,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Yadav</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[1095.84px] mt-[179.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:825">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[1095.84px] mt-[179.12px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276319.svg" dataNodeId="0:825">
                     <div className="-translate-x-1/2 absolute h-[595px] left-[calc(50%-20.84px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[22.88px] w-[400px]" data-node-id="0:826">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle36} />
                     </div>
@@ -183,10 +261,10 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Pandey</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                 </div>
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:830">
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:831">
+                  <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276317.svg" dataNodeId="0:831">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%-10px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[98px] w-[394px]" data-node-id="0:832">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle37} />
                     </div>
@@ -197,8 +275,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Saxena</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:836">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[217px] mt-[177px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276318.svg" dataNodeId="0:836">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+29px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-0 w-[394px]" data-node-id="0:837">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle38} />
                     </div>
@@ -210,8 +288,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Agarwal</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:841">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[434px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320.svg" dataNodeId="0:841">
                     <div className="-translate-x-1/2 absolute h-[528px] left-[calc(50%-0.42px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-5.12px] w-[327px]" data-node-id="0:842">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle39} />
                     </div>
@@ -222,8 +300,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Gupta</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-[868px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:846">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[868px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276307.svg" dataNodeId="0:846">
                     <div className="-translate-x-1/2 absolute h-[494px] left-[calc(50%-31px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[53px] w-[332px]" data-node-id="0:847">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle40} />
                     </div>
@@ -234,8 +312,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Singh</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#ffc931] col-1 h-[600px] ml-[651px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:851">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[651px] mt-[177px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314.svg" dataNodeId="0:851">
                     <div className="-translate-x-1/2 absolute h-[558px] left-[calc(50%+9.58px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[-49.12px] w-[375px]" data-node-id="0:852">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle41} />
                     </div>
@@ -246,7 +324,7 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Jha</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                 </div>
               </div>
               <p className="[word-break:break-word] bg-clip-text bg-gradient-to-r font-['Satoshi:Bold',Arial,sans-serif] from-[33%] from-white leading-[normal] not-italic relative shrink-0 text-[60px] text-[transparent] text-center to-[#999] tracking-[-2.4px] whitespace-nowrap" data-node-id="0:856">
@@ -255,7 +333,7 @@ export default function Alumni() {
               <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-node-id="0:857" data-name="2024">
                 <div className="content-stretch flex flex-col gap-[17px] items-center relative shrink-0" data-node-id="0:858">
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="0:859">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:860">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312-1.svg" dataNodeId="0:860">
                       <div className="-translate-x-1/2 absolute h-[380.7px] left-[calc(50%-28.08px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[108px] w-[255.83px]" data-node-id="0:861">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle42} />
                       </div>
@@ -266,8 +344,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Aryan</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434.88px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:865">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434.88px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276315-1.svg" dataNodeId="0:865">
                       <div className="-translate-x-1/2 absolute h-[540px] left-[calc(50%+48.62px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[101px] w-[363px]" data-node-id="0:866">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle43} />
                       </div>
@@ -278,9 +356,9 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Bajpai</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[217.44px] mt-[177.12px] place-items-start relative row-1" data-node-id="0:870">
-                      <div className="bg-[#cbd5d4] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:871">
+                      <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Group 1000002950-1.svg" dataNodeId="0:871">
                         <div className="-translate-x-1/2 absolute h-[455px] left-[calc(50%+33.06px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[33.88px] w-[305px]" data-node-id="0:872">
                           <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle44} />
                         </div>
@@ -291,9 +369,9 @@ export default function Alumni() {
                             <p className="leading-[1.25]">Pandey</p>
                           </div>
                         </div>
-                      </div>
+                      </AlumniCardFlip>
                     </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[652.32px] mt-[177.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:876">
+                    <AlumniCardFlip className="col-1 row-1 ml-[652.32px] mt-[177.12px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276321-1.svg" dataNodeId="0:876">
                       <div className="-translate-x-1/2 absolute h-[507px] left-[calc(50%+19.18px)] shadow-[2.88px_2.88px_2.88px_0px_rgba(0,0,0,0.25)] top-[45.88px] w-[341px]" data-node-id="0:877">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle45} />
                       </div>
@@ -304,8 +382,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Pandey</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[869.76px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:881">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[869.76px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276309-1.svg" dataNodeId="0:881">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+9.24px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[-26px] w-[394px]" data-node-id="0:882">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle46} />
                       </div>
@@ -316,8 +394,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Ranjan</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[1095.84px] mt-[179.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:886">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[1095.84px] mt-[179.12px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276319-1.svg" dataNodeId="0:886">
                       <div className="-translate-x-1/2 absolute h-[595px] left-[calc(50%-20.84px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[22.88px] w-[400px]" data-node-id="0:887">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle47} />
                       </div>
@@ -328,10 +406,10 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Baranwal</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="0:891">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:892">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312-2.svg" dataNodeId="0:892">
                       <div className="-translate-x-1/2 absolute h-[473px] left-1/2 shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[3px] w-[318px]" data-node-id="0:893">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle48} />
                       </div>
@@ -342,8 +420,8 @@ export default function Alumni() {
                           <p className="leading-[1.25] whitespace-pre">Jaiswal</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434.88px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:897">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434.88px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276315-2.svg" dataNodeId="0:897">
                       <div className="-translate-x-1/2 absolute h-[629px] left-[calc(50%-11.38px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[-45px] w-[423px]" data-node-id="0:898">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle49} />
                       </div>
@@ -354,9 +432,9 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Mishra</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[217.44px] mt-[177.12px] place-items-start relative row-1" data-node-id="0:902">
-                      <div className="bg-[#cbd5d4] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:903">
+                      <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Group 1000002950-2.svg" dataNodeId="0:903">
                         <div className="-translate-x-1/2 absolute h-[455px] left-[calc(50%+11.06px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[88.88px] w-[305px]" data-node-id="0:904">
                           <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle50} />
                         </div>
@@ -367,9 +445,9 @@ export default function Alumni() {
                             <p className="leading-[1.25]">Karnwal</p>
                           </div>
                         </div>
-                      </div>
+                      </AlumniCardFlip>
                     </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[652.32px] mt-[177.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:908">
+                    <AlumniCardFlip className="col-1 row-1 ml-[652.32px] mt-[177.12px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276321-2.svg" dataNodeId="0:908">
                       <div className="-translate-x-1/2 absolute h-[507px] left-[calc(50%+19.18px)] shadow-[2.88px_2.88px_2.88px_0px_rgba(0,0,0,0.25)] top-[41.88px] w-[341px]" data-node-id="0:909">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle51} />
                       </div>
@@ -380,8 +458,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Verma</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[869.76px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:913">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[869.76px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276309-2.svg" dataNodeId="0:913">
                       <div className="-translate-x-1/2 absolute h-[522px] left-[calc(50%+17.24px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[56.88px] w-[350px]" data-node-id="0:914">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle52} />
                       </div>
@@ -392,10 +470,10 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Gaur</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="0:918">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:919">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312-3.svg" dataNodeId="0:919">
                       <div className="-translate-x-1/2 absolute h-[439px] left-[calc(50%-0.5px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[37px] w-[295px]" data-node-id="0:920">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle53} />
                       </div>
@@ -406,8 +484,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Singh</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434.88px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:924">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434.88px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276315-3.svg" dataNodeId="0:924">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%-14.88px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[75px] w-[394px]" data-node-id="0:925">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle54} />
                       </div>
@@ -418,9 +496,9 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Yadav</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[217.44px] mt-[177.12px] place-items-start relative row-1" data-node-id="0:929">
-                      <div className="bg-[#cbd5d4] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:930">
+                      <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Group 1000002950-3.svg" dataNodeId="0:930">
                         <div className="-translate-x-1/2 absolute h-[455px] left-[calc(50%-51.94px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[123.88px] w-[305px]" data-node-id="0:931">
                           <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle55} />
                         </div>
@@ -431,9 +509,9 @@ export default function Alumni() {
                             <p className="leading-[1.25]">Gupta</p>
                           </div>
                         </div>
-                      </div>
+                      </AlumniCardFlip>
                     </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[652.32px] mt-[177.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:935">
+                    <AlumniCardFlip className="col-1 row-1 ml-[652.32px] mt-[177.12px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276321-3.svg" dataNodeId="0:935">
                       <div className="-translate-x-1/2 absolute h-[507px] left-[calc(50%-0.82px)] shadow-[2.88px_2.88px_2.88px_0px_rgba(0,0,0,0.25)] top-[45.88px] w-[341px]" data-node-id="0:936">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle56} />
                       </div>
@@ -444,8 +522,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Agarwal</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[869.76px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:940">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[869.76px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276309-3.svg" dataNodeId="0:940">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+12px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-0 w-[394px]" data-node-id="0:941">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle57} />
                       </div>
@@ -456,11 +534,11 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Shukla</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                   <div className="content-stretch flex gap-[17px] items-end relative shrink-0" data-node-id="0:945">
                     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="0:946">
-                      <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[217px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:947">
+                      <AlumniCardFlip className="col-1 row-1 ml-[217px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320-1.svg" dataNodeId="0:947">
                         <div className="-translate-x-1/2 absolute h-[600px] left-1/2 shadow-[10.161px_10.161px_10.161px_0px_rgba(0,0,0,0.25)] top-[-41px] w-[372px]" data-node-id="0:948">
                           <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle58} />
                         </div>
@@ -471,8 +549,8 @@ export default function Alumni() {
                             <p className="leading-[1.25]">Singh</p>
                           </div>
                         </div>
-                      </div>
-                      <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:952">
+                      </AlumniCardFlip>
+                      <AlumniCardFlip className="col-1 row-1 ml-0 mt-[177px]" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276307-1.svg" dataNodeId="0:952">
                         <div className="-translate-x-1/2 absolute h-[436px] left-[calc(50%-0.5px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[61px] w-[293px]" data-node-id="0:953">
                           <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle59} />
                         </div>
@@ -483,9 +561,9 @@ export default function Alumni() {
                             <p className="leading-[1.25]">Upadhayay</p>
                           </div>
                         </div>
-                      </div>
+                      </AlumniCardFlip>
                     </div>
-                    <div className="bg-[#cbd5d4] h-[600px] overflow-clip relative rounded-[300px] shrink-0 w-[200px]" data-node-id="0:957">
+                    <AlumniCardFlip className="shrink-0" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276319-2.svg" dataNodeId="0:957">
                       <div className="-translate-x-1/2 absolute h-[595px] left-[calc(50%-20.84px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[22.88px] w-[400px]" data-node-id="0:958">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle60} />
                       </div>
@@ -496,7 +574,7 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Singh</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                 </div>
               </div>
@@ -506,7 +584,7 @@ export default function Alumni() {
               <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-node-id="0:963" data-name="2023">
                 <div className="content-stretch flex flex-col gap-[17px] items-start leading-[0] relative shrink-0" data-node-id="0:964">
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:965">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:966">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276317-1.svg" dataNodeId="0:966">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+0.08px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[13.88px] w-[394px]" data-node-id="0:967">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle61} />
                       </div>
@@ -517,8 +595,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Sahu</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:971">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[217px] mt-[177px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276318-1.svg" dataNodeId="0:971">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+0.08px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[-0.12px] w-[394px]" data-node-id="0:972">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle62} />
                       </div>
@@ -528,8 +606,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Anadee</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:976">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320-2.svg" dataNodeId="0:976">
                       <div className="-translate-x-1/2 absolute h-[528px] left-[calc(50%-0.42px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-5.12px] w-[327px]" data-node-id="0:977">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle63} />
                       </div>
@@ -540,8 +618,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Mishra</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[868px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:981">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[868px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276307-2.svg" dataNodeId="0:981">
                       <div className="-translate-x-1/2 absolute h-[567px] left-[calc(50%+17.58px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[-43.12px] w-[381px]" data-node-id="0:982">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle64} />
                       </div>
@@ -552,8 +630,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Dubey</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[651px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:986">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[651px] mt-[177px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314-1.svg" dataNodeId="0:986">
                       <div className="-translate-x-1/2 absolute h-[407px] left-[calc(50%-36.42px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[68.88px] w-[273px]" data-node-id="0:987">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle65} />
                       </div>
@@ -564,10 +642,10 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Batra</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:991">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:992">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276317-2.svg" dataNodeId="0:992">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%-39px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[14px] w-[394px]" data-node-id="0:993">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle66} />
                       </div>
@@ -578,8 +656,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Soni</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:997">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[217px] mt-[177px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276318-2.svg" dataNodeId="0:997">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+24px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[41px] w-[394px]" data-node-id="0:998">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle67} />
                       </div>
@@ -590,8 +668,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Dixit</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1002">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320-3.svg" dataNodeId="0:1002">
                       <div className="-translate-x-1/2 absolute h-[528px] left-[calc(50%-0.42px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-5.12px] w-[327px]" data-node-id="0:1003">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle68} />
                       </div>
@@ -602,8 +680,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Kumar</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[868px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1007">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[868px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276307-3.svg" dataNodeId="0:1007">
                       <div className="-translate-x-1/2 absolute h-[494px] left-1/2 shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[53px] w-[332px]" data-node-id="0:1008">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle69} />
                       </div>
@@ -614,8 +692,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Lalwani</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[651px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1012">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[651px] mt-[177px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314-2.svg" dataNodeId="0:1012">
                       <div className="-translate-x-1/2 absolute h-[503px] left-[calc(50%+16px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[26px] w-[338px]" data-node-id="0:1013">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle70} />
                       </div>
@@ -626,7 +704,7 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Agarwal</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                 </div>
               </div>
@@ -635,7 +713,7 @@ export default function Alumni() {
               </p>
               <div className="content-stretch flex flex-col gap-[17px] items-start leading-[0] relative shrink-0" data-node-id="0:1018">
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:1019">
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1020">
+                  <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312-4.svg" dataNodeId="0:1020">
                     <div className="-translate-x-1/2 absolute h-[380.7px] left-[calc(50%-28.58px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[80.88px] w-[255.83px]" data-node-id="0:1021">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle71} />
                     </div>
@@ -646,8 +724,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Arya</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434.88px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1025">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[434.88px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276315-4.svg" dataNodeId="0:1025">
                     <div className="-translate-x-1/2 absolute h-[467px] left-[calc(50%+23.62px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[65.88px] w-[314px]" data-node-id="0:1026">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle72} />
                     </div>
@@ -658,9 +736,9 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Agarwal</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                   <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[217.44px] mt-[177.12px] place-items-start relative row-1" data-node-id="0:1030">
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1031">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Group 1000002950-4.svg" dataNodeId="0:1031">
                       <div className="-translate-x-1/2 absolute h-[455px] left-[calc(50%+16.56px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[33.76px] w-[305px]" data-node-id="0:1032">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle73} />
                       </div>
@@ -671,9 +749,9 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Kumar</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
-                  <div className="bg-[#ffc931] col-1 h-[600px] ml-[652.32px] mt-[177.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1036">
+                  <AlumniCardFlip className="col-1 row-1 ml-[652.32px] mt-[177.12px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276321-4.svg" dataNodeId="0:1036">
                     <div className="-translate-x-1/2 absolute h-[477px] left-[calc(50%+18.18px)] shadow-[2.88px_2.88px_2.88px_0px_rgba(0,0,0,0.25)] top-[80.76px] w-[320px]" data-node-id="0:1037">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle74} />
                     </div>
@@ -684,8 +762,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Srivastava</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-[869.76px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1041">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[869.76px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276309-4.svg" dataNodeId="0:1041">
                     <div className="-translate-x-1/2 absolute h-[486px] left-[calc(50%+18.74px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[56.88px] w-[326px]" data-node-id="0:1042">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle75} />
                     </div>
@@ -696,8 +774,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Rastogi</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[1095.84px] mt-[179.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1046">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[1095.84px] mt-[179.12px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276319-3.svg" dataNodeId="0:1046">
                     <div className="-translate-x-1/2 absolute h-[595px] left-[calc(50%-21.34px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-14.24px] w-[400px]" data-node-id="0:1047">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle76} />
                     </div>
@@ -708,10 +786,10 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Shukla</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                 </div>
                 <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:1051">
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1052">
+                  <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276312-5.svg" dataNodeId="0:1052">
                     <div className="-translate-x-1/2 absolute h-[416px] left-[calc(50%-27px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[73px] w-[280px]" data-node-id="0:1053">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle77} />
                     </div>
@@ -722,8 +800,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Singh</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434.88px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1057">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[434.88px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276315-5.svg" dataNodeId="0:1057">
                     <div className="-translate-x-1/2 absolute h-[423px] left-[calc(50%-53.88px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[48px] w-[284px]" data-node-id="0:1058">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle78} />
                     </div>
@@ -734,9 +812,9 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Sahai</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                   <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[217.44px] mt-[177.12px] place-items-start relative row-1" data-node-id="0:1062">
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1063">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#cbd5d4]" backSvg="Group 1000002950-5.svg" dataNodeId="0:1063">
                       <div className="-translate-x-1/2 absolute h-[455px] left-[calc(50%+0.06px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[33.88px] w-[305px]" data-node-id="0:1064">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle79} />
                       </div>
@@ -747,9 +825,9 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Akhtar</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
-                  <div className="bg-[#ffc931] col-1 h-[600px] ml-[652.32px] mt-[177.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1068">
+                  <AlumniCardFlip className="col-1 row-1 ml-[652.32px] mt-[177.12px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276321-5.svg" dataNodeId="0:1068">
                     <div className="-translate-x-1/2 absolute h-[556px] left-[calc(50%+15.68px)] shadow-[2.88px_2.88px_2.88px_0px_rgba(0,0,0,0.25)] top-[18.88px] w-[374px]" data-node-id="0:1069">
                       <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle80} />
                     </div>
@@ -760,8 +838,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Agarwal</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#feb9ce] col-1 h-[600px] ml-[869.76px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1073">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[869.76px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276309-5.svg" dataNodeId="0:1073">
                     <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+0.24px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[33px] w-[394px]" data-node-id="0:1074">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle81} />
                     </div>
@@ -772,8 +850,8 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Jain</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[1095.84px] mt-[179.12px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1078">
+                  </AlumniCardFlip>
+                  <AlumniCardFlip className="col-1 row-1 ml-[1095.84px] mt-[179.12px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276319-4.svg" dataNodeId="0:1078">
                     <div className="-translate-x-1/2 absolute h-[507px] left-[calc(50%+50.66px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[20.88px] w-[341px]" data-node-id="0:1079">
                       <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle82} />
                     </div>
@@ -784,7 +862,7 @@ export default function Alumni() {
                         <p className="leading-[1.25]">Singh</p>
                       </div>
                     </div>
-                  </div>
+                  </AlumniCardFlip>
                 </div>
               </div>
               <p className="[word-break:break-word] bg-clip-text bg-gradient-to-r font-['Satoshi:Bold',Arial,sans-serif] from-[33%] from-white leading-[normal] not-italic relative shrink-0 text-[60px] text-[transparent] text-center to-[#999] tracking-[-2.4px] whitespace-nowrap" data-node-id="0:1083">
@@ -793,7 +871,7 @@ export default function Alumni() {
               <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-node-id="0:1084" data-name="2022">
                 <div className="content-stretch flex flex-col gap-[17px] items-start leading-[0] relative shrink-0" data-node-id="0:1085">
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:1086">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1087">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276317-3.svg" dataNodeId="0:1087">
                       <div className="-translate-x-1/2 absolute h-[514px] left-[calc(50%-15.84px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[26.52px] w-[346px]" data-node-id="0:1088">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle83} />
                       </div>
@@ -804,8 +882,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Chaudhary</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1092">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[217px] mt-[177px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276318-3.svg" dataNodeId="0:1092">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+22.16px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[-0.48px] w-[394px]" data-node-id="0:1093">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle84} />
                       </div>
@@ -816,8 +894,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Gera</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1097">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320-4.svg" dataNodeId="0:1097">
                       <div className="-translate-x-1/2 absolute h-[542px] left-[calc(50%+5.16px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[-31.48px] w-[336px]" data-node-id="0:1098">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle85} />
                       </div>
@@ -828,8 +906,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Gupta</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[868px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1102">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[868px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276307-4.svg" dataNodeId="0:1102">
                       <div className="-translate-x-1/2 absolute h-[509px] left-[calc(50%+0.16px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[-12.48px] w-[342px]" data-node-id="0:1103">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle86} />
                       </div>
@@ -840,8 +918,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Shirur</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[651px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1107">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[651px] mt-[177px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314-3.svg" dataNodeId="0:1107">
                       <div className="-translate-x-1/2 absolute h-[407px] left-[calc(50%+0.66px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[68.52px] w-[273px]" data-node-id="0:1108">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle87} />
                       </div>
@@ -853,10 +931,10 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Ansari</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                   <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0" data-node-id="0:1112">
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-0 mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1113">
+                    <AlumniCardFlip className="col-1 row-1 ml-0 mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276317-4.svg" dataNodeId="0:1113">
                       <div className="-translate-x-1/2 absolute h-[462px] left-[calc(50%+17.66px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[13.52px] w-[311px]" data-node-id="0:1114">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle88} />
                       </div>
@@ -867,8 +945,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Kumar</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#cbd5d4] col-1 h-[600px] ml-[217px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1118">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[217px] mt-[177px]" bgColor="bg-[#cbd5d4]" backSvg="Frame 1171276318-4.svg" dataNodeId="0:1118">
                       <div className="-translate-x-1/2 absolute h-[586px] left-[calc(50%+15.16px)] shadow-[3.6px_3.6px_3.6px_0px_rgba(0,0,0,0.25)] top-[28.52px] w-[394px]" data-node-id="0:1119">
                         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgRectangle89} />
                       </div>
@@ -879,8 +957,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Verma</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#e4dcd2] col-1 h-[600px] ml-[434px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1123">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[434px] mt-0" bgColor="bg-[#e4dcd2]" backSvg="Frame 1171276320-5.svg" dataNodeId="0:1123">
                       <div className="-translate-x-1/2 absolute h-[528px] left-[calc(50%+0.66px)] shadow-[4.32px_4.32px_4.32px_0px_rgba(0,0,0,0.25)] top-[35.52px] w-[327px]" data-node-id="0:1124">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle90} />
                       </div>
@@ -891,8 +969,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Raghuvanshi</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#feb9ce] col-1 h-[600px] ml-[868px] mt-0 overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1128">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[868px] mt-0" bgColor="bg-[#feb9ce]" backSvg="Frame 1171276307-5.svg" dataNodeId="0:1128">
                       <div className="-translate-x-1/2 absolute h-[494px] left-[calc(50%+0.16px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[-5.48px] w-[332px]" data-node-id="0:1129">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle91} />
                       </div>
@@ -903,8 +981,8 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Luke</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-[#ffc931] col-1 h-[600px] ml-[651px] mt-[177px] overflow-clip relative rounded-[300px] row-1 w-[200px]" data-node-id="0:1133">
+                    </AlumniCardFlip>
+                    <AlumniCardFlip className="col-1 row-1 ml-[651px] mt-[177px]" bgColor="bg-[#ffc931]" backSvg="Frame 1171276314-4.svg" dataNodeId="0:1133">
                       <div className="-translate-x-1/2 absolute h-[503px] left-[calc(50%+0.16px)] shadow-[4px_4px_4px_0px_rgba(0,0,0,0.25)] top-[-14.48px] w-[338px]" data-node-id="0:1134">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgRectangle92} />
                       </div>
@@ -915,7 +993,7 @@ export default function Alumni() {
                           <p className="leading-[1.25]">Mehrotra</p>
                         </div>
                       </div>
-                    </div>
+                    </AlumniCardFlip>
                   </div>
                 </div>
               </div>
