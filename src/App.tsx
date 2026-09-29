@@ -23,6 +23,7 @@ import Project from "./pages/Project";
 import Recruitment from "./pages/Recruitment";
 import Team from "./pages/Team";
 import { EtherealBeamsBackground } from "./components/ui/ethereal-beams-hero";
+import GateReveal from "./components/GateReveal";
 
 type Route = "home" | "about" | "project" | "team" | "alumni" | "recruitment";
 
@@ -473,26 +474,28 @@ export default function App() {
   const Page = page.component;
 
   return (
-    <main className="relative min-h-dvh bg-black">
-      {/* 3D Ethereal Beams Background across whole website */}
-      <EtherealBeamsBackground
-        beamWidth={2.5}
-        beamHeight={18}
-        speed={2.5}
-        noiseIntensity={2}
-        lightColor="#ffffff"
-        rotation={43}
-      />
-      <div className="relative z-10">
-        <ScaledDesign
-          sourceHeight={page.height}
-          currentRoute={route}
-          onNavigate={(r) => navigate(r)}
-        >
-          <Page />
-        </ScaledDesign>
-      </div>
-    </main>
+    <GateReveal gateSrc="/Group.svg" revealDistance={1400}>
+      <main className="relative min-h-dvh bg-black">
+        {/* 3D Ethereal Beams Background across whole website */}
+        <EtherealBeamsBackground
+          beamWidth={2.5}
+          beamHeight={18}
+          speed={2.5}
+          noiseIntensity={2}
+          lightColor="#ffffff"
+          rotation={43}
+        />
+        <div className="relative z-10">
+          <ScaledDesign
+            sourceHeight={page.height}
+            currentRoute={route}
+            onNavigate={(r) => navigate(r)}
+          >
+            <Page />
+          </ScaledDesign>
+        </div>
+      </main>
+    </GateReveal>
   );
 }
 
