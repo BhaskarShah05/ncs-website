@@ -19,7 +19,7 @@ team_social_links = {
     {"type": "instagram", "url": "https://www.instagram.com/ajeet_3d/"}
   ],
   "Ajinkya Mishra": [
-    {"type": "linkedin", "url": "https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav"},
+    {"type": "linkedin", "url": "https://www.linkedin.com/in/ajinkya-mishra-54889a323/?isSelfProfile=false"},
     {"type": "github", "url": "https://github.com/AjinkyaMishra"}
   ],
   "Kuldeep Chaudhary": [
