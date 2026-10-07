@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Navbar from "../components/Navbar";
@@ -152,19 +152,28 @@ function ClubLogoFlip({
 export default function Home() {
   const [hoveredClub, setHoveredClub] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!document.querySelector('script[src*="@splinetool/viewer"]')) {
+      const script = document.createElement("script");
+      script.type = "module";
+      script.src = "https://cdn.spline.design/@splinetool/viewer@2.0.75/build/spline-viewer.js";
+      document.head.appendChild(script);
+    }
+  }, []);
+
   const navigate = (route: string) => {
     window.location.hash = `/${route}`;
   };
 
   return (
-    <div className="relative min-h-full w-full bg-transparent px-[70px] pt-[27px] font-['Satoshi_Variable:Regular',Arial,sans-serif] text-white">
+    <div className="relative min-h-full w-full bg-transparent px-4 sm:px-8 md:px-12 xl:px-[70px] pt-[27px] font-['Satoshi_Variable:Regular',Arial,sans-serif] text-white">
       {/* Navigation */}
       <Navbar currentRoute="home" onNavigate={navigate} />
 
       {/* Hero Section */}
-      <section className="relative mx-auto mt-[75px] flex w-[1539px] max-w-full items-start justify-between">
-        <div className="flex w-[738px] flex-col items-start pt-[33px]">
-          <h1 className="flex flex-col font-['Satoshi:Black',Arial,sans-serif] text-[132px] font-black leading-[1.05] tracking-[-3.5px] uppercase">
+      <section className="relative mx-auto mt-[40px] md:mt-[60px] xl:mt-[75px] flex flex-col lg:flex-row w-full max-w-[1539px] items-center lg:items-start justify-between gap-10 xl:gap-6">
+        <div className="flex w-full lg:w-[50%] xl:w-[738px] max-w-[738px] flex-col items-center lg:items-start pt-[10px] md:pt-[20px] lg:pt-[33px] text-center lg:text-left">
+          <h1 className="flex flex-col font-['Satoshi:Black',Arial,sans-serif] text-[58px] sm:text-[84px] md:text-[104px] lg:text-[112px] xl:text-[132px] font-black leading-[1.02] tracking-[-2px] sm:tracking-[-3.5px] uppercase">
             <span
               className="bg-clip-text text-transparent"
               style={{
@@ -194,11 +203,11 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="mt-[36px] font-['Satoshi:Medium',Arial,sans-serif] text-[16px] font-medium tracking-[3.5px] text-[#d4d4d8] uppercase">
+          <p className="mt-[20px] sm:mt-[30px] lg:mt-[36px] font-['Satoshi:Medium',Arial,sans-serif] text-[13px] sm:text-[15px] md:text-[16px] font-medium tracking-[2.5px] sm:tracking-[3.5px] text-[#d4d4d8] uppercase">
             WE CODE • WE DESIGN • WE DEVELOP
           </p>
 
-          <div className="mt-[32px]">
+          <div className="mt-[24px] sm:mt-[32px]">
             <LiquidMetalButton
               label="Join the Community"
               onClick={() => navigate("recruitment")}
@@ -211,11 +220,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative flex w-[816px] shrink-0 items-center justify-end">
-          <img
-            src="/assets/49496.svg"
-            className="h-[725px] w-[816px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-            alt="Nibble Computer Society Hero 3D Illustration"
+        <div className="relative flex w-full lg:w-[50%] xl:w-[816px] max-w-[816px] aspect-4/3 sm:aspect-auto h-[380px] sm:h-[480px] md:h-[580px] lg:h-[660px] xl:h-[725px] shrink-0 lg:shrink items-center justify-center overflow-hidden">
+          <spline-viewer
+            url="https://prod.spline.design/uf2wIxgO0yhwMjDR/scene.splinecode"
+            style={{ width: "100%", height: "100%", display: "block" }}
           />
         </div>
       </section>
