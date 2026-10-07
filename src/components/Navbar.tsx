@@ -4,6 +4,8 @@ import {
   Home,
   Info,
   FolderGit2,
+  Calendar,
+  Images,
   Users,
   GraduationCap,
   UserPlus,
@@ -27,6 +29,8 @@ const navItems: NavItem[] = [
   { label: "Home", route: "home", icon: Home },
   { label: "About", route: "about", icon: Info },
   { label: "Project", route: "project", icon: FolderGit2 },
+  { label: "Events", route: "events", icon: Calendar },
+  { label: "Gallery", route: "gallery", icon: Images },
   { label: "Team", route: "team", icon: Users },
   { label: "Alumni", route: "alumni", icon: GraduationCap },
   { label: "Recruitment", route: "recruitment", icon: UserPlus },
@@ -48,12 +52,12 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
   };
 
   return (
-    <nav className="relative mx-auto h-[106px] w-[1539px] max-w-full rounded-[53px] bg-white shadow-xl px-[40px] flex items-center justify-between">
+    <nav className="relative mx-auto h-[106px] w-[1539px] max-w-full rounded-[53px] bg-white shadow-xl px-[24px] xl:px-[36px] flex items-center justify-between">
       {/* 1. Left: NCS Logo (Untouched) */}
       <button
         type="button"
         onClick={() => handleNav("home")}
-        className="relative h-[54.39px] w-[122.96px] shrink-0 cursor-pointer transition-transform hover:scale-105"
+        className="relative h-[50px] w-[114px] shrink-0 cursor-pointer transition-transform hover:scale-105"
         data-name="NCS Logo"
       >
         <img
@@ -64,7 +68,7 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
       </button>
 
       {/* 2. Center: Extended & Perfectly Spaced Navigation Pill */}
-      <div className="flex items-center h-[68px] px-3 rounded-[34px] bg-neutral-100/90 border border-black/5 shadow-inner gap-2 xl:gap-3">
+      <div className="flex items-center h-[64px] px-2.5 rounded-[32px] bg-neutral-100/90 border border-black/5 shadow-inner gap-1 xl:gap-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentRoute === item.route;
@@ -78,7 +82,7 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
               onMouseLeave={() => setHoveredRoute(null)}
               onClick={() => handleNav(item.route)}
               className={cn(
-                "relative flex items-center justify-center gap-2.5 h-[52px] px-5 rounded-full cursor-pointer transition-colors duration-200 focus:outline-none select-none",
+                "relative flex items-center justify-center gap-1.5 xl:gap-2 h-[48px] px-3 xl:px-4 rounded-full cursor-pointer transition-colors duration-200 focus:outline-none select-none",
                 isActive
                   ? "text-white"
                   : "text-neutral-700 hover:text-black hover:bg-white/80",
@@ -97,7 +101,7 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
 
               {/* Icon */}
               <Icon
-                size={22}
+                size={18}
                 strokeWidth={2.2}
                 aria-hidden
                 className={cn(
@@ -109,7 +113,7 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
               {/* Label */}
               <span
                 className={cn(
-                  "relative z-10 whitespace-nowrap text-[20px] tracking-[0.1px] transition-colors duration-200 leading-none",
+                  "relative z-10 whitespace-nowrap text-[16px] xl:text-[18px] tracking-[0.1px] transition-colors duration-200 leading-none",
                   isActive ? "font-semibold text-white" : "font-medium text-neutral-800",
                 )}
                 style={{ fontFamily: "'Satoshi', Arial, sans-serif" }}
@@ -125,9 +129,9 @@ export function Navbar({ currentRoute = "home", onNavigate }: NavbarProps) {
       <LiquidMetalButton
         label="Connect"
         onClick={handleConnect}
-        width={180}
-        height={66}
-        fontSize={22}
+        width={160}
+        height={60}
+        fontSize={19}
         fontWeight={700}
       />
     </nav>

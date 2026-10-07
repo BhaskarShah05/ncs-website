@@ -13,6 +13,8 @@ import {
   Users,
   GraduationCap,
   UserPlus,
+  Calendar,
+  Images,
   ArrowUpRight,
   Hand,
 } from "lucide-react";
@@ -22,15 +24,27 @@ import Home from "./pages/Home";
 import Project from "./pages/Project";
 import Recruitment from "./pages/Recruitment";
 import Team from "./pages/Team";
+import Events from "./pages/Events";
+import Gallery from "./pages/Gallery";
 import { EtherealBeamsBackground } from "./components/ui/ethereal-beams-hero";
 import WebsiteLoader from "./components/WebsiteLoader";
 
-type Route = "home" | "about" | "project" | "team" | "alumni" | "recruitment";
+type Route =
+  | "home"
+  | "about"
+  | "project"
+  | "events"
+  | "gallery"
+  | "team"
+  | "alumni"
+  | "recruitment";
 
 const routes: Record<Route, { component: () => React.JSX.Element; height: number }> = {
   home: { component: Home, height: 4200 },
   about: { component: About, height: 3500 },
   project: { component: Project, height: 2600 },
+  events: { component: Events, height: 3200 },
+  gallery: { component: Gallery, height: 3600 },
   team: { component: Team, height: 7500 },
   alumni: { component: Alumni, height: 11000 },
   recruitment: { component: Recruitment, height: 2100 },
@@ -40,6 +54,8 @@ const navItemsList = [
   { label: "Home", route: "home" as Route, icon: HomeIcon },
   { label: "About", route: "about" as Route, icon: Info },
   { label: "Project", route: "project" as Route, icon: FolderGit2 },
+  { label: "Events", route: "events" as Route, icon: Calendar },
+  { label: "Gallery", route: "gallery" as Route, icon: Images },
   { label: "Team", route: "team" as Route, icon: Users },
   { label: "Alumni", route: "alumni" as Route, icon: GraduationCap },
   { label: "Recruitment", route: "recruitment" as Route, icon: UserPlus },
