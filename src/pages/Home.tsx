@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Navbar from "../components/Navbar";
@@ -151,6 +151,7 @@ function ClubLogoFlip({
 
 export default function Home() {
   const [hoveredClub, setHoveredClub] = useState<string | null>(null);
+  const splineRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!document.querySelector('script[src*="@splinetool/viewer"]')) {
@@ -159,6 +160,39 @@ export default function Home() {
       script.src = "https://cdn.spline.design/@splinetool/viewer@2.0.75/build/spline-viewer.js";
       document.head.appendChild(script);
     }
+
+    const removeWatermark = () => {
+      const viewer = splineRef.current || document.querySelector("spline-viewer");
+      if (viewer && viewer.shadowRoot) {
+        const logo = viewer.shadowRoot.querySelector("#logo") || viewer.shadowRoot.querySelector('a[href*="spline"]');
+        if (logo) {
+          logo.remove();
+        }
+        if (!viewer.shadowRoot.querySelector("#hide-spline-watermark")) {
+          const style = document.createElement("style");
+          style.id = "hide-spline-watermark";
+          style.textContent = "#logo, a[href*='spline.design'], a[href*='spline'] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }";
+          viewer.shadowRoot.appendChild(style);
+        }
+      }
+    };
+
+    removeWatermark();
+    const interval = setInterval(removeWatermark, 100);
+    const timeout = setTimeout(() => clearInterval(interval), 15000);
+
+    const currentViewer = splineRef.current;
+    if (currentViewer) {
+      currentViewer.addEventListener("load", removeWatermark);
+    }
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+      if (currentViewer) {
+        currentViewer.removeEventListener("load", removeWatermark);
+      }
+    };
   }, []);
 
   const navigate = (route: string) => {
@@ -222,6 +256,7 @@ export default function Home() {
 
         <div className="relative flex w-full lg:w-[50%] xl:w-[816px] max-w-[816px] aspect-4/3 sm:aspect-auto h-[380px] sm:h-[480px] md:h-[580px] lg:h-[660px] xl:h-[725px] shrink-0 lg:shrink items-center justify-center overflow-hidden">
           <spline-viewer
+            ref={splineRef}
             url="https://prod.spline.design/uf2wIxgO0yhwMjDR/scene.splinecode"
             style={{ width: "100%", height: "100%", display: "block" }}
           />

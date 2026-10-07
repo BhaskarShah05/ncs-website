@@ -7,6 +7,26 @@
     <title><!-- figma:title --></title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,800,700,600,500,400&display=swap" rel="stylesheet" />
     <script type="module" src="https://cdn.spline.design/@splinetool/viewer@2.0.75/build/spline-viewer.js"></script>
+    <script>
+      (function() {
+        function removeLogo() {
+          const viewers = document.querySelectorAll('spline-viewer');
+          viewers.forEach(function(viewer) {
+            if (viewer && viewer.shadowRoot) {
+              const logo = viewer.shadowRoot.querySelector('#logo') || viewer.shadowRoot.querySelector('a[href*="spline"]');
+              if (logo) logo.remove();
+              if (!viewer.shadowRoot.querySelector('#hide-spline-logo-style')) {
+                const style = document.createElement('style');
+                style.id = 'hide-spline-logo-style';
+                style.textContent = '#logo, a[href*="spline.design"], a[href*="spline"] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }';
+                viewer.shadowRoot.appendChild(style);
+              }
+            }
+          });
+        }
+        setInterval(removeLogo, 100);
+      })();
+    </script>
     <!-- figma:head-end -->
   </head>
   <body>
